@@ -1,0 +1,64 @@
+
+
+Currying is a function that takes one argument at a time and returns a new function expecting the next argument. 
+It is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+
+*********************************  What is currying in JavaScript?  ****************************************************
+
+
+Currying simply means evaluating functions with multiple arguments and decomposing them into a sequence of functions with a single argument.
+
+In other terms, currying is when a function — instead of taking all arguments at one time — takes the first one and returns a new function, 
+which takes the second one and returns a new function, which takes the third one, etc. until all arguments are completed.
+
+
+
+*********************************  How does currying work? **************************************************************
+
+Currying is a function that accepts multiple arguments. 
+It will transform this function into a series of functions, where every little function will accept one argument:
+
+Noncurried version//
+
+const add = (a, b, c)=>{
+    return a+ b + c
+}
+console.log(add(2, 3, 5)) // 10
+
+Curried version//
+
+const addCurry =(a) => {
+    return (b)=>{
+        return (c)=>{
+            return a+b+c
+        }
+    }
+}
+console.log(addCurry(2)(3)(5)) // 10
+
+
+*************************************  Basic currying  *****************************************************************
+
+
+const getPanCakeIngredients = (ingredient1) =>{
+    return (ingredient2) => {
+        return (ingredient3) => {
+            return ${ingredient1}, ${ingredient2}, ${ingredient3}; 
+        } 
+    } 
+} 
+getPanCakeIngredients('Egg')('flour')('milk');
+
+
+ ***********************************  Modern currying with ES6  **********************************************************
+As my bonus tip, here is a modern way of implementing currying using the ES6 arrow function. It helps you write less code:
+
+const sendRequest = greet => name => message =>
+`${greet} ${name}, ${message}`
+sendRequest('Hello')('John')('Please can you add me to your Linkedin network?')
+
+
+
+1. Currying can be used to manipulate the DOM in Javascript
+2. It can be used to trigger event listeners
+3. Currying can be used when you want to create a function that will receive only single arguments
